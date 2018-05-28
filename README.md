@@ -1,4 +1,4 @@
-- [DevOps Playground 21 - Google Kubernetes Engine](#devops-playground-21---google-kubernetes-engine)
+# DevOps Playground 21 - Google Kubernetes Engine
 - [Overview](#overview)
   - [A note on preemptible instances](#a-note-on-preemptible-instances)
 - [Hands On!](#hands-on)
@@ -36,9 +36,6 @@
   - [Improving the app a little](#improving-the-app-a-little)
   - [Scaling down](#scaling-down)
   - [Cleanup](#cleanup)
-
-
-# DevOps Playground 21 - Google Kubernetes Engine
 
 # Overview
 In this meetup, we are going to create a Kubernetes cluster on Google Cloud, using preemptible instances. 
