@@ -1,4 +1,6 @@
 # DevOps Playground 21 - Google Kubernetes Engine
+![](images/logo_gcp_vertical_rgb.png)
+
 - [Overview](#overview)
   - [A note on preemptible instances](#a-note-on-preemptible-instances)
 - [Hands On!](#hands-on)
