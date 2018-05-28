@@ -1,5 +1,44 @@
-# DevOps Playground 21 - Google Kubernetes Engine
+- [DevOps Playground 21 - Google Kubernetes Engine](#devops-playground-21---google-kubernetes-engine)
+- [Overview](#overview)
+  - [A note on preemptible instances](#a-note-on-preemptible-instances)
+- [Hands On!](#hands-on)
+  - [Getting Started with GCP](#getting-started-with-gcp)
+    - [Logging on](#logging-on)
+    - [Starting a free trial](#starting-a-free-trial)
+    - [Select your project](#select-your-project)
+  - [Google Kubernetes Engine](#google-kubernetes-engine)
+  - [Start the Google Cloud Shell](#start-the-google-cloud-shell)
+  - [Create your GKE Cluster](#create-your-gke-cluster)
+    - [Command](#command)
+    - [Details](#details)
+  - [Build your application image](#build-your-application-image)
+    - [Open cloudshell editor](#open-cloudshell-editor)
+    - [Create the playground folder](#create-the-playground-folder)
+    - [Create your application file](#create-your-application-file)
+    - [Create your Dockerfile](#create-your-dockerfile)
+    - [Create your application image](#create-your-application-image)
+    - [Testing the image locally](#testing-the-image-locally)
+    - [Push the image to Google Container Registry](#push-the-image-to-google-container-registry)
+  - [Run the image in the cluster and expose the deployment](#run-the-image-in-the-cluster-and-expose-the-deployment)
+    - [Creating a deployment](#creating-a-deployment)
+    - [Expose the deployment](#expose-the-deployment)
+  - [Enabling autoscaling for the app deployment](#enabling-autoscaling-for-the-app-deployment)
+  - [Load testing](#load-testing)
+    - [Create the load testing cluster](#create-the-load-testing-cluster)
+    - [Create the load testing replication controllers and service](#create-the-load-testing-replication-controllers-and-service)
+  - [Slowing down our application](#slowing-down-our-application)
+    - [Changing the code](#changing-the-code)
+    - [Building the image](#building-the-image)
+    - [Push the new version to Google Container Registry](#push-the-new-version-to-google-container-registry)
+    - [Perform a rolling update](#perform-a-rolling-update)
+  - [Perform another load test](#perform-another-load-test)
+  - [Scaling up](#scaling-up)
+  - [Improving the app a little](#improving-the-app-a-little)
+  - [Scaling down](#scaling-down)
+  - [Cleanup](#cleanup)
 
+
+# DevOps Playground 21 - Google Kubernetes Engine
 
 # Overview
 In this meetup, we are going to create a Kubernetes cluster on Google Cloud, using preemptible instances. 
@@ -341,6 +380,7 @@ Run a test with 10 users and a hatch rate of 10.
 It doesn't seem to stress the app or cluster too much, so try again with 1000 users and 100 hatch rate.
 ![](images/locust-test-1000.png)
 ![](images/locust-test-1000-log.png)
+![](images/stackdriver-after-1000-users.png)
 
 The application is very simple, runs very fast and can be run concurrently easily, so we will need to slow it down a bit. (If you have the same issue in prod, don't follow the next steps, just open a beer and relax!)
 
@@ -363,6 +403,7 @@ In main.go, replace the end of the app function by the following. This will caus
   time.Sleep(time.Second)
 }
 ```
+![](images/slow-down-app.png)
 
 ### Building the image
 Build the new version of your image.
