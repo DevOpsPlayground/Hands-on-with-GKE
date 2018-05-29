@@ -95,6 +95,8 @@ Cloud Shell provides the following:
 
 ## Create your GKE Cluster
 
+If you just created your new account, it will take 5-10 minutes before you're able to create a new cluster.
+
 ### Command
 
 ```
@@ -107,8 +109,11 @@ gcloud container clusters get-credentials playground --zone us-east1-b --project
 ```
 
 This command will take roughly 5 minutes to complete.
+Remember, if you open a new Cloud Shell, you will need to run the `export PROJECT_ID="$(gcloud config get-value project -q)"` command again.
 
 ![](images/gke-cluster-created.png)
+
+In the meantime, in the menu, open Monitoring, under Stackdriver, and enable it for your account if it wasn't done already. This will allow it to monitor your cluster in the background.
 
 ### Details
 
@@ -203,9 +208,10 @@ CMD ["./app"]
 
 We are now going to build the image.
 
-`cd playground`
-`docker build -t gcr.io/${PROJECT_ID}/app:v1 .`
-
+```
+cd playground
+docker build -t gcr.io/${PROJECT_ID}/app:v1 .
+```
 ![](images/build-app-image.png)
 
 ### Testing the image locally
@@ -475,6 +481,9 @@ Delete the playground cluster
 Delete the loadtesting cluster
 `gcloud beta container --project ${PROJECT_ID} clusters delete loadtesting --zone us-east1-b --async`
 
-Beware, there might still be some forwarding rules existing, which will cost you some money over time, so have a look and delete if anything still exists
+Delete your images
+`gcloud container images delete gcr.io/${PROJECT_ID}/app:v1 --force-delete-tags`
+
+Beware, there might still be some forwarding rules existing, which will cost you some money over time, so have a look and delete if anything still exists there:
 Network Services > Load Balancing > advanced menu > Forwarding rules
 
